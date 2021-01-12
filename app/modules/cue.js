@@ -344,42 +344,8 @@ Module.prototype.getCueCommand = function (c, a, cnt, pa, pb, pc, pd) {
 					buffer.push(0x23, 0x00, 0x00, c3, c4, c5, c6, c7, 0x80);
 					break;
 				case CueActionCmd_Drive.WHEEL:
-					var left = 0;
-					var right = 0;
-					switch (pb) {
-						case 1: // 매우 느리게, 17cm/s
-							left = 17;
-							break;
-						case 2: // 느리게, 22m/s
-							left = 22;
-							break;
-						case 3: // 보통, 27cm/s
-							left = 27;
-							break;
-						case 4: // 빠르게, 32cm/s
-							left = 32;
-							break;
-						case 5: // 매우 빠르게, 37cm/s
-							left = 37;
-							break;
-					}
-					switch (pd) {
-						case 1: // 매우 느리게, 17cm/s
-							right = 17;
-							break;
-						case 2: // 느리게, 22m/s
-							right = 22;
-							break;
-						case 3: // 보통, 27cm/s
-							right = 27;
-							break;
-						case 4: // 빠르게, 32cm/s
-							right = 32;
-							break;
-						case 5: // 매우 빠르게, 37cm/s
-							right = 37;
-							break;
-					}
+					var left = pb;
+					var right = pd;
 					if (pa == 0x01) {
 						left *= 30;
 					}
