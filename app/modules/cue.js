@@ -91,7 +91,7 @@ var barrier_distance_val = 5;
 var CueCategoryCmd = { DRIVE: 1, START: 2, LOOK: 3, LIGHT: 4, SOUND: 5, ANIMATION: 6 };
 var CueActionCmd_Drive = { FORWARD: 1, BACKWARD: 2, TURN_CW: 3, TURN_CCW: 4, WHEEL: 5, STOP: 6 };
 var CueActionCmd_Look = { LEFT: 1, FORWARD: 2, RIGHT: 3, UP: 4, STRAIGHT: 5, DOWN: 6, FORWARD_VOICE: 7 };
-var CueActionCmd_Light = { ALL: 1, LEFT_EAR: 2, RIGHT_EAR: 3, FRONT: 4, EYE_PATTERN: 6};
+var CueActionCmd_Light = { ALL: 1, LEFT_EAR: 2, RIGHT_EAR: 3, FRONT: 4, TAIL: 5, EYE_PATTERN: 6, TOP: 7};
 var CueActionCmd_Sound = { MY_SOUNDS: 1, SAY: 2 };
 var CueParamCmd_Sound_Say =
 {
@@ -429,7 +429,6 @@ Module.prototype.getCueCommand = function (c, a, cnt, pa, pb, pc, pd) {
 		// LED 액션
 		case CueCategoryCmd.LIGHT:
 			switch (a) {
-				case CueActionCmd_Light.TOP:
 				case CueActionCmd_Light.TAIL:
 					buffer.push((a == CueActionCmd_Light.TAIL) ? 0x04 : 0x0d, pa);
 					break;
@@ -446,6 +445,7 @@ Module.prototype.getCueCommand = function (c, a, cnt, pa, pb, pc, pd) {
 				case CueActionCmd_Light.ALL:
 				case CueActionCmd_Light.LEFT_EAR: buffer.push(0xb, pa, pb, pc); if (a == CueActionCmd_Light.LEFT_EAR) break;
 				case CueActionCmd_Light.RIGHT_EAR: buffer.push(0xc, pa, pb, pc); if (a == CueActionCmd_Light.RIGHT_EAR) break;
+				case CueActionCmd_Light.TOP: buffer.push(0x30, pa, pb, pc); if (a == CueActionCmd_Light.TOP) break;
 				case CueActionCmd_Light.FRONT: buffer.push(0x3, pa, pb, pc); break;
 			}
 			break;
